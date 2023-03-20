@@ -1,0 +1,52 @@
+{
+  "name": "@mskelton/icons",
+  "description": "Material icons packaged as React components.",
+  "version": "0.0.0-semantically-released",
+  "publishConfig": {
+    "access": "public"
+  },
+  "author": "Mark Skelton",
+  "packageManager": "pnpm@7.29.1",
+  "repository": "github:mskelton/icons",
+  "homepage": "https://github.com/mskelton/icons#readme",
+  "bugs": {
+    "url": "https://github.com/mskelton/icons/issues"
+  },
+  "license": "ISC",
+  "keywords": [
+    "npm",
+    "material-icons",
+    "material-symbols"
+  ],
+  "scripts": {
+    "build": "node ./scripts/build.js",
+    "format": "prettier --write ."
+  },
+  "type": "module",
+  "exports": {
+    "./outline": {
+      "types": "./outline/index.d.ts",
+      "import": "./outline/index.js"
+    },
+    "./solid": {
+      "types": "./solid/index.d.ts",
+      "import": "./solid/index.js"
+    }
+  },
+  "files": [
+    "outline",
+    "solid"
+  ],
+  "peerDependencies": {
+    "react": ">=17"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.21.3",
+    "@babel/plugin-transform-react-jsx": "^7.21.0",
+    "@material-symbols/svg-700": "^0.5.0",
+    "@svgr/core": "^6.5.1",
+    "change-case": "^4.1.2",
+    "prettier": "^2.8.4",
+    "semantic-release": "^20.1.3"
+  }
+}
