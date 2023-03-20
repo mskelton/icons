@@ -44,7 +44,7 @@ async function process(folder, icons) {
 
   // index.js
   const index = icons
-    .map(({ name }) => `export { ${name} } from './${name}.js'`)
+    .map(({ name }) => `export { default as ${name} } from './${name}.js'`)
     .join("\n")
 
   // index.d.ts
