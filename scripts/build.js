@@ -61,7 +61,13 @@ async function process(folder, icons) {
   const promises = icons.map(async ({ content, name }) => {
     const component = await svgr.transform(
       content,
-      { dimensions: false, ref: true, titleProp: true },
+      {
+        dimensions: false,
+        ref: true,
+        svgProps: {
+          fill: "currentColor",
+        },
+      },
       { componentName: name }
     )
 
