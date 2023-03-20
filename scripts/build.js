@@ -65,6 +65,7 @@ async function process(folder, icons) {
         dimensions: false,
         ref: true,
         svgProps: {
+          "aria-hidden": "true",
           fill: "currentColor",
         },
       },
