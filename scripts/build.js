@@ -1,14 +1,11 @@
 import babel from "@babel/core"
 import svgr from "@svgr/core"
 import { pascalCase } from "change-case"
-import fs from "node:fs/promises"
-import { createRequire } from "node:module"
-import path from "node:path"
-import { pathToFileURL } from "node:url"
+import path from "path"
+import fs from "fs/promises"
 
-const require = createRequire(import.meta.url)
 const manifest = require.resolve("@material-symbols/svg-700/package.json")
-const baseURL = pathToFileURL(path.dirname(manifest) + "/")
+const baseURL = Bun.pathToFileURL(path.dirname(manifest) + "/")
 
 const tsHeader = [
   'import * as React from "react"',
@@ -21,6 +18,7 @@ const tsHeader = [
   "",
 ].join("\n")
 
+/** @param {string} file */
 function getName(file) {
   const raw = "md-" + file.replace(".svg", "").replace(/_/g, "-")
   return pascalCase(raw).replace(/_/g, "")
@@ -31,13 +29,16 @@ async function readIcons() {
   const files = await fs.readdir(url)
 
   const promises = files.map(async (file) => {
-    const content = await fs.readFile(new URL(file, url), "utf8")
+    const content = await Bun.file(new URL(file, url)).text()
     return { content, name: getName(file) }
   })
 
   return Promise.all(promises)
 }
 
+/**
+ * @param {string} folder
+ */
 async function process(folder, icons) {
   const outputURL = new URL(`../${folder}/`, import.meta.url)
   await fs.mkdir(outputURL, { recursive: true })
@@ -54,8 +55,8 @@ async function process(folder, icons) {
     })
     .join("\n")
 
-  await fs.writeFile(new URL("./index.js", outputURL), index)
-  await fs.writeFile(new URL("./index.d.ts", outputURL), tsHeader + indexTS)
+  await Bun.write(new URL("./index.js", outputURL), index)
+  await Bun.write(new URL("./index.d.ts", outputURL), tsHeader + indexTS)
 
   // Icon files
   const promises = icons.map(async ({ content, name }) => {
@@ -78,7 +79,7 @@ async function process(folder, icons) {
       ],
     })
 
-    await fs.writeFile(new URL(`./${name}.js`, outputURL), code)
+    await Bun.write(new URL(`./${name}.js`, outputURL), code)
   })
 
   await Promise.all(promises)

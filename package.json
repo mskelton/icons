@@ -6,7 +6,6 @@
     "access": "public"
   },
   "author": "Mark Skelton",
-  "packageManager": "pnpm@7.29.1",
   "repository": "github:mskelton/icons",
   "homepage": "https://github.com/mskelton/icons#readme",
   "bugs": {
@@ -19,8 +18,8 @@
     "material-symbols"
   ],
   "scripts": {
-    "build": "node ./scripts/build.js",
-    "format": "prettier --write ."
+    "build": "bun ./scripts/build.js",
+    "fmt": "prettier --write ."
   },
   "type": "module",
   "exports": {
@@ -45,6 +44,7 @@
     "@babel/plugin-transform-react-jsx": "^7.21.0",
     "@material-symbols/svg-700": "^0.5.0",
     "@svgr/core": "^6.5.1",
+    "bun-types": "^1.0.1",
     "change-case": "^4.1.2",
     "prettier": "^2.8.4",
     "semantic-release": "^20.1.3"

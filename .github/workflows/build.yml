@@ -11,9 +11,9 @@ jobs:
       pull-requests: write
     runs-on: ubuntu-latest
     steps:
-      - uses: mskelton/setup-pnpm@v1
-      - run: pnpm build
-      - run: pnpm semantic-release
+      - uses: mskelton/setup-bun@v1
+      - run: bun run build
+      - run: bun semantic-release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}

@@ -26,6 +26,12 @@ yarn add @mskelton/icons
 pnpm add @mskelton/icons
 ```
 
+### Bun
+
+```bash
+bun add @mskelton/icons
+```
+
 ## Usage
 
 This package provides rounded
