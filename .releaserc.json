@@ -1,0 +1,3 @@
+{
+  "extends": "@mskelton/semantic-release-config"
+}

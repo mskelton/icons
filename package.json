@@ -43,6 +43,7 @@
     "@babel/core": "^7.21.3",
     "@babel/plugin-transform-react-jsx": "^7.21.0",
     "@material-symbols/svg-700": "^0.5.0",
+    "@mskelton/semantic-release-config": "^1.0.1",
     "@svgr/core": "^6.5.1",
     "bun-types": "^1.0.1",
     "change-case": "^4.1.2",
